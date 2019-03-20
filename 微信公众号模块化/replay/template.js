@@ -50,7 +50,6 @@ module.exports = (options) => {
     }
 
     replayMsg += `</xml>`
-
     return replayMsg;
 }
 

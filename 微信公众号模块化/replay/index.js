@@ -1,10 +1,6 @@
-
 const sha1 = require('sha1');
-<<<<<<< HEAD
-const {dealUserDataAsync, userDataToJsObj, formatJsObj} = require('../untils/tools');
-=======
-const tools = require('../untils/tools');
->>>>>>> a2f016883493891406b445659fe7be310f3796cd
+const {dealUserDataAsync, userDataToJsObj, formatJsObj} = require('../utils/tools');
+const tools = require('../utils/tools');
 const template = require('./template');
 /*中间件函数模块*/
 module.exports = () => {
@@ -36,17 +32,10 @@ module.exports = () => {
                 return;
             }
             //用异步的方法来处理用户发来的消息,函数返回一个promise对象
-<<<<<<< HEAD
             const xmlData = await dealUserDataAsync(req);
 
             //将上面的数据转为js对象，先引入xml2js包
             const dataObj = userDataToJsObj(xmlData);
-=======
-            const xmlDatas = await dealUserDataAsync(req);
-
-            //将上面的数据转为js对象，先引入xml2js包
-            const dataObj = userDataToJsObj(xmlDatas);
->>>>>>> a2f016883493891406b445659fe7be310f3796cd
 
             //格式化js对象
             const userData = formatJsObj(dataObj);
@@ -56,7 +45,6 @@ module.exports = () => {
                 fromUserName: userData.ToUserName,
                 createTime: Date.now(),
                 type: 'text',
-<<<<<<< HEAD
                 content: '请说人话'
             }
             //返回消息给用户
@@ -65,16 +53,13 @@ module.exports = () => {
             } else if (userData.Content && userData.Content.indexOf('2') !== -1) {
                 //indexOf：字符串中含有参数就返回参数的下标，不含有就返回-1
                 options.content = '你要和我聊天吗？';
-=======
-                Content: '请说人话'
             }
             //返回消息给用户
             if (userData.Content === '1') {
-                options.Content = '你要和我玩游戏吗？';
-            } else if (userData.Content.indexOf('2') !== -1) {
+                options.content = '你要和我玩游戏吗？';
+            } else if (userData.Content && userData.Content.indexOf('2') !== -1) {
                 //indexOf：字符串中含有参数就返回参数的下标，不含有就返回-1
-                options.Content = '你要和我聊天吗？';
->>>>>>> a2f016883493891406b445659fe7be310f3796cd
+                options.content = '你要和我聊天吗？';
             }
 
             //返回的数据必须是xml格式

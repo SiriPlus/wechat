@@ -12,7 +12,7 @@ module.exports = (userData) => {
     if(userData.MsgType === 'text'){
         if (userData.Content === '1') {
             options.content = '你要和我玩游戏吗？';
-
+            //indexOf：userData.Content中包含了2
         } else if (userData.Content && userData.Content.indexOf('2') !== -1) {
             //indexOf：字符串中含有参数就返回参数的下标，不含有就返回-1
             options.content = '你要和我聊天吗？';

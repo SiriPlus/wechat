@@ -105,7 +105,7 @@ app.use(async (req,res) => {
         if(userData.Content === '1'){
             console.log(11)
             replayContent = '你要和我玩游戏吗？';
-        }else if(userData.Content.indexOf('2') !== -1){
+        }else if(userData.Content && userData.Content.indexOf('2') !== -1){
             //indexOf：字符串中含有参数就返回参数的下标，不含有就返回-1
             replayContent = '你要和我聊天吗？';
         }

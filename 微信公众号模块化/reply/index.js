@@ -3,12 +3,12 @@ const {dealUserDataAsync, userDataToJsObj, formatJsObj} = require('../utils/tool
 const tools = require('../utils/tools');
 const template = require('./template');
 const handleResponse = require('./handleRosponse');
+const {token} = require('../config/config');
 /*中间件函数模块*/
 module.exports = () => {
     return async (req, res) => {
 
         const {signature, echostr, timestamp, nonce} = req.query;
-        const token = 'atDate1314';
 
         //1）将token、timestamp、nonce三个参数进行字典序排序
         // 2）将三个参数字符串拼接成一个字符串进行sha1加密

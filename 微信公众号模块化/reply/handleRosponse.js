@@ -1,4 +1,4 @@
-
+const {url} = require('../config/config')
 module.exports = (userData) => {
     let options = {
         toUserName: userData.FromUserName,
@@ -13,9 +13,11 @@ module.exports = (userData) => {
         if (userData.Content === '1') {
             options.content = '你要和我玩游戏吗？';
             //indexOf：userData.Content中包含了2
-        } else if (userData.Content && userData.Content.indexOf('2') !== -1) {
+        } else if (userData.Content.indexOf('2') !== -1) {
             //indexOf：字符串中含有参数就返回参数的下标，不含有就返回-1
             options.content = '你要和我聊天吗？';
+        }else if (userData.Content === '3'){
+            options.content = `<a href="${url}/search">语音识别页面</a>`
         }
         }else if(userData.MsgType === 'voice'){
             //语音识别功能

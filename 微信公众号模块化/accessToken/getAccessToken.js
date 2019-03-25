@@ -1,13 +1,12 @@
 //引入模块,用于node服务器向微信服务器发送请求
 const rp = require('request-promise-native');
+const {appId, appSecret} = require('../config/config');
 
 //用写入数据的方式将access_token保存到一个文件中
 const { writeFile, readFile } = require('fs');
 
 //定义一个获取access_token的函数，可以复用
 async function getAccessToken(){
-    const appId = 'wxfe36fe3b7cc72edf';
-    const appSecret = '2265dd883d6e83baa036cbcc854af42b';
     //请求地址
     const url  = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appId}&secret=${appSecret}`;
 
@@ -18,12 +17,13 @@ async function getAccessToken(){
 
     //将access_token保存到一个文本文件中
     //son.stringify()：将json数据转换为字符串
-    writeFile('accessToken.txt',JSON.stringify(reqResult), err => {
+  await new Promise( (resolve, reject) => {
+       writeFile('accessToken.txt',JSON.stringify(reqResult), err => {
+           if (!err) resolve();
+           else reject(err);
 
-        if (!err) console.log('文件保存成功');
-        else console.log(err);
-
-    })
+       })
+   } )
 
     return reqResult;
 }
